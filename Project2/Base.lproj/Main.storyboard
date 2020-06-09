@@ -17,6 +17,9 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8e-nR-7pW">
                                 <rect key="frame" x="107" y="100" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="N8e-nR-7pW" secondAttribute="height" multiplier="2:1" id="msa-Cq-0Cf"/>
+                                </constraints>
                                 <state key="normal" image="us"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wEF-Jf-I5a"/>
@@ -24,6 +27,9 @@
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="693-Rc-3Y9">
                                 <rect key="frame" x="107" y="230" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="693-Rc-3Y9" secondAttribute="height" multiplier="2:1" id="M19-Hi-7AQ"/>
+                                </constraints>
                                 <state key="normal" image="us"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VFl-TZ-sAt"/>
@@ -31,6 +37,9 @@
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XcQ-yS-hvh">
                                 <rect key="frame" x="107" y="360" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XcQ-yS-hvh" secondAttribute="height" multiplier="2:1" id="vOn-Np-Yko"/>
+                                </constraints>
                                 <state key="normal" image="us"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RER-5o-cBY"/>
@@ -42,8 +51,11 @@
                             <constraint firstItem="N8e-nR-7pW" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="06E-xu-qd4"/>
                             <constraint firstItem="XcQ-yS-hvh" firstAttribute="top" secondItem="693-Rc-3Y9" secondAttribute="bottom" constant="30" id="G7V-ft-CvX"/>
                             <constraint firstItem="693-Rc-3Y9" firstAttribute="top" secondItem="N8e-nR-7pW" secondAttribute="bottom" constant="30" id="Niy-fa-HHE"/>
+                            <constraint firstItem="XcQ-yS-hvh" firstAttribute="height" secondItem="693-Rc-3Y9" secondAttribute="height" id="OwJ-AY-YgP"/>
                             <constraint firstItem="XcQ-yS-hvh" firstAttribute="centerX" secondItem="693-Rc-3Y9" secondAttribute="centerX" id="QmO-FC-nhz"/>
                             <constraint firstItem="N8e-nR-7pW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="TdG-3t-eM9"/>
+                            <constraint firstItem="693-Rc-3Y9" firstAttribute="height" secondItem="N8e-nR-7pW" secondAttribute="height" id="XD2-RI-6FI"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="XcQ-yS-hvh" secondAttribute="bottom" constant="20" id="aTv-he-h5u"/>
                             <constraint firstItem="693-Rc-3Y9" firstAttribute="centerX" secondItem="N8e-nR-7pW" secondAttribute="centerX" id="eTo-Co-3bQ"/>
                             <constraint firstItem="N8e-nR-7pW" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="kWM-ps-Jw2"/>
                         </constraints>
