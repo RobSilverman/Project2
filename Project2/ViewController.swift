@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     
     var countries = [String]()
     var score = 0
+    var highScore = 0
     var correctAnswer = 0
     var correctCountry = "Loading"
     
@@ -32,11 +33,13 @@ class ViewController: UIViewController {
         button2.layer.borderColor = UIColor.lightGray.cgColor
         button3.layer.borderColor = UIColor.lightGray.cgColor
         
+        loadHighScore()
+        
         title = "Country: \(correctCountry) --- Score: \(score)"
         
-        askQuestion()
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
+        
+        askQuestion()
     }
     
     func askQuestion(action: UIAlertAction! = nil) {
@@ -70,6 +73,7 @@ class ViewController: UIViewController {
         if sender.tag == correctAnswer {
             alertTitle = "Correct"
             score += 1
+            checkUpdateHighScore()
             alertMessage = "Your score is \(score)."
         } else {
             alertTitle = "Incorrect"
@@ -80,6 +84,37 @@ class ViewController: UIViewController {
         let ac = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
         present(ac, animated: true)
+    }
+    
+    func checkUpdateHighScore() {
+        if score > highScore {
+            highScore = score
+            saveHighScore()
+        }
+        print("High Score: \(highScore)")
+    }
+    
+    func saveHighScore() {
+        let jEncoder = JSONEncoder()
+        if let savedData = try? jEncoder.encode(highScore) {
+            let defaults = UserDefaults.standard
+            defaults.set(savedData, forKey: "high-score")
+        } else {
+            print("Unable to save highScore")
+        }
+    }
+    
+    func loadHighScore() {
+        let defaults = UserDefaults.standard
+        if let savedScore = defaults.object(forKey: "high-score") as? Data {
+            let jDecoder = JSONDecoder()
+            
+            do {
+                highScore = try jDecoder.decode(Int.self, from: savedScore)
+            } catch {
+                print("Could not load highScore data")
+            }
+        }
     }
     
 }
