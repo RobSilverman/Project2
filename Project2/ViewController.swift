@@ -70,6 +70,14 @@ class ViewController: UIViewController {
         var alertTitle: String
         var alertMessage: String
         
+        UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 20, options: [], animations: {
+            sender.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        })
+        
+        UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 20, options: [], animations: {
+            sender.transform = .identity
+        })
+        
         if sender.tag == correctAnswer {
             alertTitle = "Correct"
             score += 1
