@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UNUserNotificationCenterDelegate {
     
     @IBOutlet var button1: UIButton!
     @IBOutlet var button2: UIButton!
@@ -38,6 +38,8 @@ class ViewController: UIViewController {
         title = "Country: \(correctCountry) --- Score: \(score)"
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
+        
+        requestAndScheduleNotifications()
         
         askQuestion()
     }
@@ -123,6 +125,36 @@ class ViewController: UIViewController {
                 print("Could not load highScore data")
             }
         }
+    }
+    
+    func requestAndScheduleNotifications() {
+        let notificationCenter = UNUserNotificationCenter.current()
+        
+        notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) {
+            (completion, error) in
+            if completion {
+                print("Authorized")
+            } else {
+                print("Not Authorized")
+            }
+        }
+        
+        notificationCenter.removeAllPendingNotificationRequests()
+        notificationCenter.delegate = self
+        
+        var dateComponents = DateComponents()
+        dateComponents.hour = 12
+        dateComponents.minute = 15
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Time to learn!"
+        content.body = "Just 10 minutes a day will make you better at, uh, flags!"
+        content.categoryIdentifier = "reminder"
+        content.sound = UNNotificationSound.default
+        
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        notificationCenter.add(request)
     }
     
 }
